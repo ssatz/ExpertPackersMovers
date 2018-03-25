@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RichSnippetService } from '../_services/richsnippet.service';
 
 @Component({
   selector: 'app-contactus',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contactus.component.css']
 })
 export class ContactusComponent implements OnInit {
-
-  constructor() { }
+  public jsonLD;
+  constructor(private richSnippet: RichSnippetService) { }
 
   ngOnInit() {
+    this.jsonLD = this.richSnippet.contactJsonLD();
   }
 
 }

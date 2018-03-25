@@ -28,6 +28,7 @@ import { ContactusComponent } from './components/contactus/contactus.component';
 
 // used to create fake backend
 import { fakeBackendProvider } from './components/_helpers/index';
+import { RichSnippetService } from './components/_services/richsnippet.service';
 const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, data: { title: 'Profile Component!!!!' } },
   { path: 'booking', component: BookingComponent, data: { title: 'Booking Component!!!!' } },
@@ -61,7 +62,7 @@ const appRoutes: Routes = [
       useClass: JwtInterceptor,
       multi: true
     },
-
+    RichSnippetService,
     // provider used to create fake backend
     fakeBackendProvider
   ],

@@ -6,6 +6,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Server Side Rendering
+
+Run `npm run build:ssr`  for building the ssr
+Run `npm run serve:ssr`  this will listen to the port 3000
+
+Always use the angular recommended way of DOM manipulation(Renderer2) , if you are using jQuery or Other third party modules 
+Don't forget to check the platformserver browser 
+` 
+import { Component, PLATFORM_ID, Inject, Renderer2 } from '@angular/core';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+if (isPlatformBrowser(this.platformId)) {
+   //Your Jquery Code
+}
+`
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

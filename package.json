@@ -2,6 +2,10 @@
   "name": "packers",
   "version": "0.0.0",
   "license": "MIT",
+  "contributors": [
+    "Vignesh <vignesh1001@gmail.com>",
+    "Satz <sathish.thi@gmail.com>"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng server --host 0.0.0.0 --port 8080 --public-host --disable-host-check",
@@ -9,10 +13,13 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
-    "serve:ssr": "node dist/server",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
+    "build:prerender": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "generate:prerender": "cd dist && node prerender",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
+    "serve:prerender": "cd dist/browser && http-server",
+    "serve:ssr": "node dist/server"
   },
   "private": true,
   "dependencies": {
@@ -59,6 +66,7 @@
     "ts-loader": "^3.5.0",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "~2.4.2",
+    "http-server": "^0.10.0"
   }
 }

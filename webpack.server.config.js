@@ -3,7 +3,8 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 module.exports = {
     entry: {
-        server: './server.ts'
+        server: './server.ts',
+        prerender: './prerender.ts'
     },
     resolve: {extensions: ['.js', '.ts']},
     target: 'node',

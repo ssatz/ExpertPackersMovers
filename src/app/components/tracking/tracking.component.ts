@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../_services/index';
+import { Title, Meta } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -14,11 +15,26 @@ export class TrackingComponent implements OnInit {
     bookingid: ''
   };
   public track;
-  constructor(private router: Router, private http: HttpClient, public loginService: LoginService) { }
+  constructor(private router: Router,
+    private http: HttpClient,
+    private title: Title,
+    private meta: Meta,
+    public loginService: LoginService) { }
   loading = false;
   book;
   bookList: any = [];
   ngOnInit() {
+    /* SEO start */
+    this.title.setTitle('Track Your Package - Expert Packers & Movers Coimbatore');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Experts Packers and Movers is affordable Packer and Mover in Coimbatore. ' +
+        '✓Verifed & Licensed Packer and Movers ✓Safe & Reliable ✓Inter & Intra City ' +
+        'Packing & Moving ✓Hassle Free from the trusted and affordable relocation services.'
+    });
+    this.meta.updateTag({name: 'keywords' ,
+    content: 'expert packers movers, packers and movers coimbatore, affordable packers and movers'});
+    /* SEO End */
     if (this.loginService.loadUserDetails()) {
     }
     if (this.loginService.userId) {

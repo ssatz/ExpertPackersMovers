@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../_services/index';
 import { HttpClient } from '@angular/common/http';
 import { Signup } from '../_models';
 import { SignIn } from '../_models/signin';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-signup',
@@ -16,22 +17,57 @@ export class SignupComponent implements OnInit {
   isSignUpActive = false;
   signupTO: any = new Signup();
   loading = false;
-  constructor(private router: Router, private http: HttpClient, public loginService: LoginService) { 
+  constructor(private router: Router,
+    private http: HttpClient,
+    private title: Title,
+    private meta: Meta,
+    private activatedRoute: ActivatedRoute,
+    public loginService: LoginService) {
     this.signupTO.login_type_id = 2 ;
   }
 
   signup;
   signinTO: any = new SignIn();
+  ngOnInit() {
+    this.activatedRoute.url.subscribe(url => {
+      if(url[0].path === 'signup') {
+        /**SEO Start */
+ this.title.setTitle('Singup - Professional packers and movers in Bangalore');
+ this.meta.updateTag({
+   name: 'description',
+   content: 'Packers and Movers Bangalore - Hire best and trusted packers and movers' +
+     'in Bangalore for local shifting, domestic relocation,logistics service and household service.' +
+     '✔ Fast, Secure Office Moving, IT Equipment Moving and House Relocation Services.'
+ });
+ this.meta.updateTag({name: 'keywords' ,
+ content: 'professional packers and movers,logistics services,' +
+ 'corporate shifting services bangalore,relocation services,movers and packers' +
+ 'household services, packers and movers bangalore, affordable packers and movers'});
+ /**SEO Ends */
+      } else {
+         /**SEO Start */
+ this.title.setTitle('Singin - Logistics & Household shifting services in  Bangalore');
+ this.meta.updateTag({
+   name: 'description',
+   content: 'Packers and Movers Bangalore - Hire best and trusted packers and movers' +
+     'in Bangalore for local shifting, domestic relocation,logistics service and household service.' +
+     '✔ Fast, Secure Office Moving, IT Equipment Moving and House Relocation Services.'
+ });
+ this.meta.updateTag({name: 'keywords' ,
+ content: 'professional packers and movers,logistics services,' +
+ 'corporate shifting services bangalore,relocation services,movers and packers' +
+ 'household services, packers and movers bangalore, affordable packers and movers'});
+ /**SEO Ends */
+      }
+ });
 
+  }
   toggleSignUp(condition) {
     if (condition === 'login') {
       this.isSignUpActive = false;
     } else {
       this.isSignUpActive = true;
     }
-  }
-
-  ngOnInit() {
   }
 
   singin() {

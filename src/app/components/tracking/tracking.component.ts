@@ -25,7 +25,7 @@ export class TrackingComponent implements OnInit {
   bookList: any = [];
   ngOnInit() {
     /* SEO start */
-    this.title.setTitle('Track Your Package - Expert Packers & Movers Coimbatore');
+    this.title.setTitle('Track Your Package - Expert Packers & Movers Bangalore');
     this.meta.updateTag({
       name: 'description',
       content: 'Experts Packers and Movers is affordable Packer and Mover in Coimbatore. ' +
@@ -33,7 +33,9 @@ export class TrackingComponent implements OnInit {
         'Packing & Moving ✓Hassle Free from the trusted and affordable relocation services.'
     });
     this.meta.updateTag({name: 'keywords' ,
-    content: 'expert packers movers, packers and movers coimbatore, affordable packers and movers'});
+    content: 'packers and movers,logistics tracking,relocation services,relocation services  bangalore,' +
+              'corporate shiffting services,corporate shiffting services bangalore,movers and packers,local packers and movers'
+    });
     /* SEO End */
     if (this.loginService.loadUserDetails()) {
     }

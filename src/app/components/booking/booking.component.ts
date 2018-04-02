@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AlertService, LoginService } from '../_services/index';
+import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -10,11 +11,27 @@ import { AlertService, LoginService } from '../_services/index';
 })
 export class BookingComponent implements OnInit {
   public addBookingTO ;
-  constructor(private router: Router, private http: HttpClient, private loginSerive: LoginService) { }
+  constructor(private router: Router,
+    private http: HttpClient,
+    private title: Title,
+    private meta: Meta,
+    private loginSerive: LoginService) { }
   public loading = false;
   public userDetail;
   public isUpdate = false;
   ngOnInit() {
+    this.title.setTitle('Book Your Package - Relocation Services in Bangalore');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Book your relocation services with us.' +
+        '✔ Most trusted professional packers & movers in Bangalore.' +
+        '✔ Fast, Secure Office Moving, IT Equipment Moving and House Relocation Services.'
+    });
+    this.meta.updateTag({name: 'keywords' ,
+    content: 'professional packers and movers,logistics services,' +
+    'corporate shifting services bangalore,relocation services,movers and packers' +
+    'household services, packers and movers bangalore, affordable packers and movers'});
+
     this.isUpdate = false;
     if (this.loginSerive.loadUserDetails()) {
       this.userDetail = { fileds: { mobile: 'q' } };

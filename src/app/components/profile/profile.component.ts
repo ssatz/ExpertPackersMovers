@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AlertService, LoginService } from '../_services/index';
+import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,11 +14,25 @@ export class ProfileComponent implements OnInit {
   public loading = false;
   userDetail = { fileds: { mobile: 'qqqqqqqqqq' } };
 
-  constructor(private router: Router, private http: HttpClient, private loginService: LoginService) {
+  constructor(private router: Router,
+              private http: HttpClient,
+              private title: Title,
+              private meta: Meta,
+              private loginService: LoginService) {
     this.userDetail = { fileds: { mobile: 'wwwwwwwwwwwwww' } };
   }
 
   ngOnInit() {
+    this.title.setTitle('Profile - Expert Packers & Movers in Bangalore');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Experts Packers and Movers is affordable Packer and Mover in Coimbatore. ' +
+        '✓Verifed & Licensed Packer and Movers ✓Safe & Reliable ✓Inter & Intra City ' +
+        'Packing & Moving ✓Hassle Free from the trusted and affordable relocation services.'
+    });
+    this.meta.updateTag({name: 'keywords' ,
+    content: 'expert packers movers,logistics services,household services, local packers and movers' +
+     'packers and movers bangalore, affordable packers and movers, logistics services,Household service'});
     if (this.loginService.loadUserDetails()) {
       this.userDetail = { fileds: { mobile: 'q' } };
       this.userDetail = JSON.parse(this.loginService.getCookie('userDetails'));

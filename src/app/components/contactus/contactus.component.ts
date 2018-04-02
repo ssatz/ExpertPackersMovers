@@ -15,7 +15,7 @@ export class ContactusComponent implements OnInit {
 
   ngOnInit() {
     this.jsonLD = this.richSnippet.contactJsonLD();
-    this.title.setTitle('Contact Us - Expert Packers & Movers Coimbatore');
+    this.title.setTitle('Contact Us - Expert Packers & Movers Bangalore');
     this.meta.updateTag({
       name: 'description',
       content: 'Experts Packers and Movers is affordable Packer and Mover in Coimbatore. ' +
@@ -23,7 +23,7 @@ export class ContactusComponent implements OnInit {
         'Packing & Moving ✓Hassle Free from the trusted and affordable relocation services.'
     });
     this.meta.updateTag({name: 'keywords' ,
-    content: 'expert packers movers, packers and movers coimbatore, affordable packers and movers'});
+    content: 'expert packers movers,logistics services,household services, packers and movers bangalore, affordable packers and movers'});
   }
 
 }

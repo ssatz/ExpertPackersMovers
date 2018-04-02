@@ -1,9 +1,11 @@
 // Load zone.js for the server.
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-import {readFileSync, writeFileSync, existsSync, mkdirSync} from 'fs';
+import {readFileSync, writeFileSync, existsSync, mkdirSync, writeFile} from 'fs';
 import {join} from 'path';
+const robots = require('robots-generator');
 
+const sm = require('sitemap');
 import {enableProdMode} from '@angular/core';
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -40,4 +42,20 @@ ROUTES.forEach(route => {
       provideModuleMap(LAZY_MODULE_MAP)
     ]
   })).then(html => writeFileSync(join(fullPath, 'index.html'), html));
+});
+const xml = sm.createSitemap ({
+  hostname: 'http://www.expertpackersandmovers.com',
+  cacheTime: 600000,        // 600 sec - cache purge period
+});
+
+ROUTES.forEach(route => {
+  xml.add({url: route, changefreq: 'monthly', priority: 0.7});
+});
+writeFileSync(join(BROWSER_FOLDER, 'sitemap.xml'), xml.toString());
+
+robots({
+  useragent: '*',
+  sitemap: 'http://www.expertpackersandmovers.com/sitemap.xml'
+}, function (error, rbt) {
+  writeFileSync(join(BROWSER_FOLDER, 'robots.txt'), rbt);
 });

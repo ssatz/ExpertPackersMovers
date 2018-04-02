@@ -3,5 +3,6 @@ export const ROUTES = [
     '/signin',
     '/signup',
     '/tracking',
-    '/contactus'
+    '/contactus',
+    '/imagegalary'
   ];
